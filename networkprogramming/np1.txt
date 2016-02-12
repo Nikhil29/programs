@@ -1,0 +1,49 @@
+socket fn:
+#include<sys/socket.h>
+int socket(int family, int type, int protocol)
+family:		Description:
+AF_INET		IPv4 Protocol
+AF_INET6	IPv6 Protocol
+AF_LOCAL	unix domain protocol
+AF_ROUTE	routing sockets
+AF_KEY		key socket
+
+Type:		Description:
+SOCK_STREAM	Stream description
+SOCK_DGRAM	Datagram Socket
+
+
+Connect function:
+Function is used by tcp client to establish the connection with the tcp server.
+int connect(int sockfd, const struct sockaddr *servaddr, socklen_t addrlen);
+addrlen is the sizeof the structure send as second argument which is address of the server.
+
+Bind Function:
+This function assigns a local protocol address to the socket.
+int bind(int sockfd, const struct sockaddr *myaddr, socklen_t addrlen);
+
+bzero Function:
+It sets the specified number of bytes to 0 in the destination.It is often used to initialise the socket address structure to 0.
+#include<strings.h>
+void bzero(void *dest, size_t nbytes);
+
+memset function:
+It sets the specified no. of bytes to value c.
+#include<strings.h>
+void memset(void *dest, int c, size_t len);
+
+close function:
+The unix close function is also used to close a socket and terminate a tcp connection.
+#include<unistd.h>
+int close(int sockfd);
+returns 0 -> if OK
+returns -1 -> if error
+
+listen function:
+The second argument to this function specifies the maximum no of connections that the kernel should queue for this socket.
+int listen(int sockfd, int backlog);
+
+accept Function:
+The client address and address length are given are used to return the protocol address of the connected peer processes(client).
+int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
+

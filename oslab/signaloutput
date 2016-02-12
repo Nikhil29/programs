@@ -1,0 +1,15 @@
+I am a parent-process 4556 of child process 4557 
+
+I am a child process 4557 of parent process 4556 
+
+ child process -1 of parent process 4556 destroyed with status 2 
+4557 is the pid of died child in parent
+^C
+Process cannot be aborted
+program running
+program running
+program running
+program running
+program running
+^Z
+Process cannot be stopped
