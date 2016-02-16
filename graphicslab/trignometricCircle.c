@@ -1,10 +1,14 @@
+// Trignometric Algo for drawing the circle
+
 #include<graphics.h>
 #include<math.h>
 #include<stdio.h>
 
+// draw the circle with given cenetr and radius
 int mycircle(int x,int y,int radius){
    float curr_x,curr_y;
    int angle;
+   
    for(angle=0;angle<360;angle++){
       curr_x=x+cos((float)angle/180*3.14)*radius;
       curr_y=y+sin((float)angle/180*3.14)*radius;
@@ -14,6 +18,7 @@ int mycircle(int x,int y,int radius){
 }
 
 int main(int argc,char *argv[]){
+   
    //command-line parameters check
    if(argc<3){
       printf("Enter 3 arguments on commandine\n");

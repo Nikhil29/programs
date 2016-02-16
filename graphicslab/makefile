@@ -1,12 +1,18 @@
-TARGETS = points
+TARGETS = trignometricCircle 
 
-CFLAGS= -Wall -Werror -fpic -std=c11 -lgraph
-Compiler= $(CROSS_TOOL)clang
+CC = cc
+#-Weeror option to convert warnings to errors
+#-fpic to make object file that can be used for library
+CFLAGS = -Wall -Werror -std=c11 -lgraph -lm
 
-all:clean $(TARGETS)
+# if all is called then first clean is done then $targets is called
+all: clean $(TARGETS)
 
-$(TARGETS):
-	@$(Compiler) $(CFLAGS) $@.c -o $@
+# compiling the file
+# @ means suppress the normal echo of command being executed
+$(TARGETS): $(TARGETS).c
+	@$(CC) $(CFLAGS) $@.c -o $@
 
+# removing the final executable file
 clean:
 	@rm -f $(TARGETS)
