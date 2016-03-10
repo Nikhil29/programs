@@ -1,24 +1,32 @@
+// encryption for the text stegnography
+
 #include<bits/stdc++.h>
 using namespace std;
 int main()
 {
+	// Input/Output files
 	FILE *input=fopen("stegnographyinput","r");
 	FILE *output=fopen("stegnographyoutput","w");
+	
 	char hidden[1000],a[1000];
 	int temp,binary[8],i,j;
-	printf("Enter the text that you wish to hide\n");
+	
+	// input text to be hidden
+	printf("Enter the text that you wish to hide:  ");
 	scanf("%[^'\n']s",hidden);
-	// gets(hidden);
+	
+	//algo
 	for(j=0;hidden[j]!='\0';j++)
 	{
-		// printf("%c",hidden[i]);
+		// convert the character to bit form
 		temp=(int)hidden[j];
-		// printf("%d ",temp);
 		for(i=0;i<8;i++)
 		{
 			binary[i]=temp%2;
 			temp=temp/2;
 		}
+
+		// if bit is 1 then 2 spaces else 1 space after the word
 		for(i=7;i>=0;i--)
 		{
 			fscanf(input,"%s",a);
@@ -33,12 +41,16 @@ int main()
 			}
 		}
 	}
+
+	//print output to file
 	while(fscanf(input,"%s",a)!=-1)
 	{
 		fprintf(output,"%s ",a);
 	}
+	printf("Text Stegnography completed\n");
+	
+	//close the files
 	fclose(input);
 	fclose(output);
-	printf("Text Stegnography completed\n");
 	return 0;
 }

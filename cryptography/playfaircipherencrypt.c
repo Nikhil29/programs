@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<malloc.h>
+
 int generatematrix(char matrix[5][5],char str[])
 {
 	int i,check[26],counter=0;
@@ -37,10 +38,12 @@ int generatematrix(char matrix[5][5],char str[])
 	}
 	return 0;
 }
+
 struct pair
 {
 	int row,col;
 };
+
 struct pair* search(char c,char matrix[5][5])
 {
 	int i,j;
@@ -59,15 +62,21 @@ struct pair* search(char c,char matrix[5][5])
 	}
 	return x;
 }
+
 int main()
 {
 	char str[100],matrix[5][5],a1,a2,end;
 	int i,j;
 	struct pair *coor1,*coor2;
-	printf("enter the string for the 5*5 matrix and put only lowercase characters in input file\n");
-	scanf("%s",str);
+	
+	// file for input/output
 	FILE *input=fopen("playfaircipherinput","r");
 	FILE *output=fopen("playfaircipheroutput","w");
+	
+	//input string as the key
+	printf("Enter the key for encryption of lowercase characters: ");
+	scanf("%s",str);
+
 	generatematrix(matrix,str);
 	for(i=0;i<5;i++)
 	{
@@ -77,6 +86,7 @@ int main()
 		}
 		printf("\n");
 	}
+
 	while(1)
 	{
 		a1=' ';
@@ -89,6 +99,7 @@ int main()
 		if(end==-1)
 			break;
 		a2=' ';
+
 		while(a2==' ')
 		{
 			end=fscanf(input,"%c",&a2);
@@ -99,21 +110,23 @@ int main()
 		}
 		if(a1==a2)
 			a2='x';
+
 		coor1=search(a1,matrix);
 		coor2=search(a2,matrix);
+
 		if(coor1->row==coor2->row)
 		{
-			printf("%c%c %c%c\n",matrix[coor1->row][coor1->col],matrix[coor2->row][coor2->col],matrix[coor1->row][(coor1->col+1)%5],matrix[coor1->row][(coor2->col+1)%5] );
+			printf("%c%c -> %c%c\n",matrix[coor1->row][coor1->col],matrix[coor2->row][coor2->col],matrix[coor1->row][(coor1->col+1)%5],matrix[coor1->row][(coor2->col+1)%5] );
 			fprintf(output,"%c%c",matrix[coor1->row][(coor1->col+1)%5],matrix[coor1->row][(coor2->col+1)%5]);
 		}
 		else if(coor1->col==coor2->col)
 		{
-			printf("%c%c %c%c\n",matrix[coor1->row][coor1->col],matrix[coor2->row][coor2->col],matrix[(coor1->row+1)%5][coor1->col],matrix[(coor2->row+1)%5][coor1->col] );
+			printf("%c%c -> %c%c\n",matrix[coor1->row][coor1->col],matrix[coor2->row][coor2->col],matrix[(coor1->row+1)%5][coor1->col],matrix[(coor2->row+1)%5][coor1->col] );
 			fprintf(output,"%c%c",matrix[(coor1->row+1)%5][coor1->col],matrix[(coor2->row+1)%5][coor1->col]);
 		}
 		else
 		{
-			printf("%c%c %c%c\n",matrix[coor1->row][coor1->col],matrix[coor2->row][coor2->col],matrix[coor1->row][coor2->col],matrix[coor2->row][coor1->col] );
+			printf("%c%c -> %c%c\n",matrix[coor1->row][coor1->col],matrix[coor2->row][coor2->col],matrix[coor1->row][coor2->col],matrix[coor2->row][coor1->col] );
 			fprintf(output,"%c%c",matrix[coor1->row][coor2->col],matrix[coor2->row][coor1->col]);
 		}
 	}

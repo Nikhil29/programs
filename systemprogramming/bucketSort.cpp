@@ -33,7 +33,7 @@ int bucketsort(int array[],int start,int end){
 int main()
 {
 	int n,i,temp,array[1000];
-	float arrayfloat[1000];
+	int arrayint[1000];
 
 	//input
 	printf("Enter the number of elements\n");
@@ -41,8 +41,8 @@ int main()
 	printf("Enter the elements of array\n");
 	for(i=0;i<n;i++)
 	{
-		scanf("%f",&arrayfloat[i]);
-		array[i]=arrayfloat[i]*10000;
+		scanf("%d",&arrayint[i]);
+		array[i]=arrayint[i]*10000;
 	}
 
 	//sort
@@ -52,8 +52,8 @@ int main()
 	printf("Sorted Array: ");
 	for(i=0;i<n;i++)
 	{
-		arrayfloat[i]=1.00*array[i]/10000;
-		printf("%f ",arrayfloat[i]);
+		arrayint[i]=1.00*array[i]/10000;
+		printf("%d ",arrayint[i]);
 	}
 	printf("\n");
 	
