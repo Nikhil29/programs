@@ -60,7 +60,7 @@ int main()
 		printf("listen successful\n");
 	}
 	struct sockaddr_in client;
-	int clilen=sizeof(client);
+	unsigned int clilen=sizeof(client);
 	clientfd = accept(mysockfd, (struct sockaddr *)&client, &clilen);
 	if(clientfd<0)
 	{
