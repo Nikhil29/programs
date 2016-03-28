@@ -11,6 +11,59 @@ int abs(int x){
       return x;
 }
 
+// bresnham line algo used to draw line
+// works only for |m|<1
+int bresnhamLine(int x1, int y1, int x2, int y2){
+   int p_curr,currx,curry;
+
+   // coordinates output file
+   FILE *coordinates=fopen("coordinates", "w");
+
+   //slope
+   float m=((float)y2-y1)/(x2-x1);
+   int dx=abs(x2-x1);
+   int dy=abs(y2-y1);
+   putpixel(x1, y1, RED);
+
+   // algorithm
+   if(m<=1 && m>=-1){
+      currx=x1;
+      curry=y1;
+      p_curr=2*dy-dx;
+      putpixel(x1,y1,RED);
+      if(m>=0){
+         for(currx=x1+1;currx<=x2;currx++){
+            if(p_curr>=0){
+               curry++;
+               p_curr=p_curr+2*dy-2*dx;
+            }
+            else{
+               p_curr=p_curr+2*dy;
+            }
+            fprintf(coordinates,"%d %d\n",currx,curry);
+            putpixel(currx,curry,RED);
+         }
+      }
+      else{
+         for(currx=x1+1;currx<=x2;currx++){
+            if(p_curr>=0){
+               curry--;
+               p_curr=p_curr+2*dy-2*dx;
+            }
+            else{
+               p_curr=p_curr+2*dy;
+            }
+            fprintf(coordinates,"%d %d\n",currx,curry);
+            putpixel(currx,curry,RED);
+            putpixel(currx+5, curry+5, RED);
+         }
+      }
+   }
+
+   fclose(coordinates);
+   return 0;
+}
+
 int main(int argc,char *argv[]){
    // command line arguments check
    if(argc<5){
@@ -18,12 +71,8 @@ int main(int argc,char *argv[]){
       return -1;
    }
 
-   // coordinates output file
-   FILE *coordinates=fopen("coordinates", "w");
-
    // commandline input
    int x1,x2,y1,y2;
-   int p_curr,currx,curry;
    x1=atoi(argv[1]);
    y1=atoi(argv[2]);
    x2=atoi(argv[3]);
@@ -42,48 +91,12 @@ int main(int argc,char *argv[]){
    // Initialise graphics
    int gd = DETECT,gm;
    initgraph(&gd,&gm,NULL);
-   
-   //slope
-   float m=((float)y2-y1)/(x2-x1);
-   int dx=abs(x2-x1);
-	int dy=abs(y2-y1);
-   putpixel(x1, y1, RED);
 
-   // algorithm
-	if(m<=1 && m>=-1){
-		currx=x1;
-		curry=y1;
-		p_curr=2*dy-dx;
-   	putpixel(x1,y1,RED);
-      if(m>=0){
-      	for(currx=x1+1;currx<=x2;currx++){
-      		if(p_curr>=0){
-      			curry++;
-      			p_curr=p_curr+2*dy-2*dx;
-      		}
-      		else{
-      			p_curr=p_curr+2*dy;
-      		}
-            fprintf(coordinates,"%d %d\n",currx,curry);
-      		putpixel(currx,curry,RED);
-      	}
-      }
-      else{
-         for(currx=x1+1;currx<=x2;currx++){
-            if(p_curr>=0){
-               curry--;
-               p_curr=p_curr+2*dy-2*dx;
-            }
-            else{
-               p_curr=p_curr+2*dy;
-            }
-            fprintf(coordinates,"%d %d\n",currx,curry);
-            putpixel(currx,curry,RED);
-         }
-      }
-	}
+   // draw line
+   bresnhamLine(x1,y1,x2,y2);
 
    // delay to able to view graphics
 	delay(5000);
+   closegraph();
 	return 0;
 }

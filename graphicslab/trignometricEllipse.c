@@ -4,7 +4,7 @@
 #include<math.h>
 #include<stdio.h>
 
-// draw the circle with given integer center and radius
+// draw the circle with given integer center and axes
 int trignometricEllipse(int x,int y,int a,int b){
    float curr_x,curr_y;
    int angle;
@@ -56,5 +56,6 @@ int main(int argc,char *argv[]){
 
    //delay so as to view the screen
    delay(5000);
+   closegraph();
 	return 0;
 }
