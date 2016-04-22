@@ -1,3 +1,5 @@
+// execute command on server and return its status
+
 #include<bits/stdc++.h>
 using namespace std;
 #include<sys/types.h>
@@ -8,8 +10,9 @@ using namespace std;
 #include<unistd.h>
 #include<stdlib.h>
 #define MAXLINE 200
+
 int main(){
-	int mysockfd;
+	int mysockfd,status;
 	unsigned int clientSize;
 	struct sockaddr_in serverAddress, clientAddress;
 	char recvData[MAXLINE], sendData[MAXLINE];
@@ -25,16 +28,17 @@ int main(){
 	// bind server i.e. our address to our socket
 	bind(mysockfd, (struct sockaddr *)&serverAddress, (socklen_t)sizeof(serverAddress));
 
-	// receive data from server
+	// receive data from client
+	clientSize=sizeof(clientAddress);
 	recvfrom(mysockfd, recvData, sizeof(recvData), 0, (struct sockaddr *)&clientAddress, &clientSize);
 	printf("Data receive: %s\n",recvData);
 
-	// get the data to be sent
-	printf("Enter the data to be sent: ");
-	scanf("%s",sendData);
+	// execute the command on server and return the status
+	status=system(recvData);
+	sprintf(sendData, "%d", status);
 
-	// send data to server
+	// send data to client
 	sendto(mysockfd, sendData, sizeof(sendData), 0, (struct sockaddr *)&clientAddress, clientSize);
-	printf("Data send: %s\n",sendData);
+	printf("Status send: %s\n",sendData);
 	return 0;
 }

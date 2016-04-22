@@ -1,9 +1,7 @@
 ;	To assemble and run:
-;
 ;	nasm -felf64 hello.asm && ld hello.o && ./a.out
 
 global  _start
-
         section .text
 _start:
         ; write(1, message, 13)

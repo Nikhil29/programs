@@ -14,7 +14,7 @@ int trignometricEllipse(int x,int y,int a,int b){
    for(angle=0;angle<360;angle++){
       curr_x=x+a*cos((float)angle/180*3.14);
       curr_y=y+b*sin((float)angle/180*3.14);
-      putpixel((int)curr_x,(int)curr_y,RED);
+      putpixel((int)curr_x,(int)curr_y,getcolor());
       fprintf(coordinates, "%d %d\n", (int)curr_x, (int)curr_y);
    }
 
@@ -46,10 +46,8 @@ int main(int argc,char *argv[]){
    //graphics initialisation
    int gd = DETECT,gm;
    initgraph(&gd,&gm,NULL);
-
-   //Ellipse drawn from inbuilt library to check performance of ours
-   putpixel(x,y,YELLOW);
-   ellipse(x,y,0,360,a,b);
+   setbkcolor(WHITE);
+   setcolor(BLACK);
 
    //Draw the ellipse using Trignometric algo
    trignometricEllipse(x,y,a,b);

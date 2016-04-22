@@ -13,7 +13,7 @@ int midPointEllipse(int x,int y,int a,int b){
    curr_x=0;
    curr_y=b;
    pcurr=b*b-a*a*b+a*a/4;
-   putpixel(x+curr_x, y+curr_y, RED);
+   putpixel(x+curr_x, y+curr_y, getcolor());
 
    // region 1
    while(2*b*b*curr_x<2*a*a*curr_y){
@@ -26,7 +26,10 @@ int midPointEllipse(int x,int y,int a,int b){
          curr_y--;
          pcurr=pcurr+2*b*b*curr_x-2*a*a*curr_y+b*b;
       }
-      putpixel(x+curr_x, y+curr_y, RED);
+      putpixel(x+curr_x, y+curr_y, getcolor());
+      putpixel(x-curr_x, y-curr_y, getcolor());
+      putpixel(x+curr_x, y-curr_y, getcolor());
+      putpixel(x-curr_x, y+curr_y, getcolor());
       fprintf(coordinates, "%d %d\n", curr_x, curr_y);
    }
 
@@ -42,7 +45,10 @@ int midPointEllipse(int x,int y,int a,int b){
          curr_y--;
          pcurr=pcurr+2*b*b*curr_x-2*a*a*curr_y+a*a;
       }
-      putpixel(x+curr_x, y+curr_y, RED);
+      putpixel(x+curr_x, y+curr_y, getcolor());
+      putpixel(x-curr_x, y-curr_y, getcolor());
+      putpixel(x-curr_x, y+curr_y, getcolor());
+      putpixel(x+curr_x, y-curr_y, getcolor());
       fprintf(coordinates, "%d %d\n", curr_x, curr_y);
    }
 
@@ -74,10 +80,8 @@ int main(int argc,char *argv[]){
    //graphics initialisation
    int gd = DETECT,gm;
    initgraph(&gd,&gm,NULL);
-
-   //Ellipse drawn from inbuilt library to check performance of ours
-   putpixel(x,y,YELLOW);
-   ellipse(x,y,0,360,a,b);
+   setbkcolor(WHITE);
+   setcolor(BLACK);
 
    //Draw the ellipse using Trignometric algo
    midPointEllipse(x,y,a,b);

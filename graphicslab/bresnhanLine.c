@@ -23,7 +23,7 @@ int bresnhamLine(int x1, int y1, int x2, int y2){
    float m=((float)y2-y1)/(x2-x1);
    int dx=abs(x2-x1);
    int dy=abs(y2-y1);
-   putpixel(x1, y1, RED);
+   putpixel(x1, y1, getcolor());
 
    // algorithm
    if(m<=1 && m>=-1){
@@ -41,7 +41,7 @@ int bresnhamLine(int x1, int y1, int x2, int y2){
                p_curr=p_curr+2*dy;
             }
             fprintf(coordinates,"%d %d\n",currx,curry);
-            putpixel(currx,curry,RED);
+            putpixel(currx, curry, getcolor());
          }
       }
       else{
@@ -55,7 +55,7 @@ int bresnhamLine(int x1, int y1, int x2, int y2){
             }
             fprintf(coordinates,"%d %d\n",currx,curry);
             putpixel(currx,curry,RED);
-            putpixel(currx+5, curry+5, RED);
+            putpixel(currx+5, curry+5, getcolor());
          }
       }
    }
@@ -91,6 +91,8 @@ int main(int argc,char *argv[]){
    // Initialise graphics
    int gd = DETECT,gm;
    initgraph(&gd,&gm,NULL);
+   setbkcolor(WHITE);
+   setcolor(BLACK);
 
    // draw line
    bresnhamLine(x1,y1,x2,y2);

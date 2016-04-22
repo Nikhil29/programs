@@ -1,3 +1,5 @@
+// to run a command on server using udp
+
 #include<bits/stdc++.h>
 using namespace std;
 #include<sys/types.h>
@@ -8,6 +10,7 @@ using namespace std;
 #include<unistd.h>
 #include<stdlib.h>
 #define MAXLINE 200
+
 int main(){
 	int mysockfd;
 	unsigned int serverSize; 
@@ -29,10 +32,10 @@ int main(){
 	// send the data to server to execute an instruction
 	serverSize=sizeof(serverAddress);
 	sendto(mysockfd, sendData, sizeof(sendData), 0, (struct sockaddr *)&serverAddress, serverSize);
-	printf("Data sent: %s\n",sendData);
+	printf("Command sent: %s\n",sendData);
 
 	// get the result of the executed command from server
 	recvfrom(mysockfd, recvData, MAXLINE, 0, (struct sockaddr *)&serverAddress, &serverSize);
-	printf("Data received: %s\n",recvData);
+	printf("Command executed with status: %s\n",recvData);
 	return 0;
 }

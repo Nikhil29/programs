@@ -79,7 +79,6 @@ int main(int argc, char const *argv[])
 	char filename[100],data[1000];
 	int operation,err;
 	while(1){
-		system("sleep 2");
 		system("clear");
 		printf("1 -> Create File\n2 -> Display File\n3 -> Append Data to File\n4 -> Delete File\n5 -> Exit\n");
 		printf("Choose any operation: ");
@@ -124,6 +123,7 @@ int main(int argc, char const *argv[])
 			default:
 				printf("Enter a Valid Option\n");
 		}
+		system("sleep 2");
 	}
 
 	return 0;

@@ -35,46 +35,45 @@ int main(int argc,char *argv[])
    //graphics initialise
    int gd = DETECT,gm;
    initgraph(&gd,&gm,NULL);
-
-   //draw line using line function to check the correctness of the algo
-   line(x1,y1,x2,y2);
+   setbkcolor(WHITE);
+   setcolor(BLACK);
 
    //find the slope
    float m=((float)y2-y1)/(x2-x1);
 
    if(m<=1&&m>=-1){
-      putpixel(x1,y1,RED);
+      putpixel(x1,y1,getcolor());
       currx=x1;
       curry=y1;
       while(currx!=x2){
          currx+=1;
          curry=curry+m;
          fprintf(coordinates, "%d %d\n",(int)currx,(int)curry);
-         putpixel((int)currx,(int)curry,RED);
+         putpixel((int)currx,(int)curry,getcolor());
       }
    }
 
    if(m>1||m<-1){
       if(m>1){
-         putpixel(x1,y1,RED);
+         putpixel(x1,y1,getcolor());
          currx=x1;
          curry=y1;
          while(curry!=y2){
             curry+=1;
             currx=currx+1/m;
             fprintf(coordinates,"%d %d\n",(int)currx,(int)curry);
-            putpixel((int)currx,(int)curry,RED);
+            putpixel((int)currx,(int)curry,getcolor());
          }
       }
       else{
-         putpixel(x2,y2,RED);
+         putpixel(x2,y2,getcolor());
          currx=x2;
          curry=y2;
          while(curry!=y1){
             curry+=1;
             currx=currx+1/m;
             fprintf(coordinates, "%d %d\n",(int)currx,(int)curry);
-            putpixel((int)currx,(int)curry,RED);
+            putpixel((int)currx,(int)curry,getcolor());
          }
       }
    }

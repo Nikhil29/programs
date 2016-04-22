@@ -25,14 +25,14 @@ int midPointCircle(float x,float y,float radius){
 	// operate while loop until x<y
 	while(curr_x<=curr_y){
 		// output points
-		putpixel((int)(curr_x+x),(int)(curr_y+y),RED);
-		putpixel((int)(-curr_x+x),(int)(curr_y+y),RED);
-		putpixel((int)(curr_x+x),(int)(-curr_y+y),RED);
-		putpixel((int)(-curr_x+x),(int)(-curr_y+y),RED);
-		putpixel((int)(curr_y+y),(int)(curr_x+x),RED);
-		putpixel((int)(-curr_y+y),(int)(curr_x+x),RED);
-		putpixel((int)(curr_y+y),(int)(-curr_x+x),RED);
-		putpixel((int)(-curr_y+y),(int)(-curr_x+x),RED);
+		putpixel((int)(curr_x+x),(int)(curr_y+y),getcolor());
+		putpixel((int)(-curr_x+x),(int)(curr_y+y),getcolor());
+		putpixel((int)(curr_x+x),(int)(-curr_y+y),getcolor());
+		putpixel((int)(-curr_x+x),(int)(-curr_y+y),getcolor());
+		putpixel((int)(curr_y+y),(int)(curr_x+x),getcolor());
+		putpixel((int)(-curr_y+y),(int)(curr_x+x),getcolor());
+		putpixel((int)(curr_y+y),(int)(-curr_x+x),getcolor());
+		putpixel((int)(-curr_y+y),(int)(-curr_x+x),getcolor());
 		fprintf(coordinates,"%d %d\n",(int)(curr_x+x),(int)(curr_y+y));
 		fprintf(coordinates,"%d %d\n",(int)(-curr_x+x),(int)(curr_y+y));
 		fprintf(coordinates,"%d %d\n",(int)(curr_x+x),(int)(-curr_y+y));
@@ -81,11 +81,9 @@ int main(int argc,char *argv[]){
 
     //graphics initialisation
     int gd = DETECT,gm;
-    initgraph(&gd,&gm,NULL);
-
-    //Circle drawn from inbuilt library to check performance of ours
-    putpixel(x,y,YELLOW);
-    circle((int)x,(int)y,(int)radius);
+    initgraph(&gd,&gm,NULL);  
+    setbkcolor(WHITE);
+   	setcolor(BLACK);
 
     //Draw the circle using Trignometric algo
     midPointCircle(x,y,radius);

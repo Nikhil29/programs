@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// returns extended euclidean pair
 pair<int,int> extendedeuclidean(int r1,int r2,int s1,int s2,int t1,int t2){
 	if(r2==0){
 		pair<int,int> x;
@@ -11,6 +12,7 @@ pair<int,int> extendedeuclidean(int r1,int r2,int s1,int s2,int t1,int t2){
 	return extendedeuclidean(r2, r1%r2, s2, s1-r1/r2*s2, t2, t1-r1/r2*t2);
 }
 
+// gcd function
 int gcd(int a,int b){
 	if(b==0)
 		return a;
