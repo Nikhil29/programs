@@ -93,8 +93,10 @@ int main(int argc,char *argv[]){
    initgraph(&gd,&gm,NULL);
    setbkcolor(WHITE);
    setcolor(BLACK);
+   setfontcolor(BLACK);
 
    // draw line
+   printf("\n\tBresnham Line from (%d,%d) to (%d,%d)\n", x1, y1, x2, y2);
    bresnhamLine(x1,y1,x2,y2);
 
    // delay to able to view graphics

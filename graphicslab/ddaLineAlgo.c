@@ -37,6 +37,8 @@ int main(int argc,char *argv[])
    initgraph(&gd,&gm,NULL);
    setbkcolor(WHITE);
    setcolor(BLACK);
+   setfontcolor(BLACK);
+   printf("\n\tDDA Line from (%d,%d) to (%d,%d)\n",x1,y1,x2,y2);
 
    //find the slope
    float m=((float)y2-y1)/(x2-x1);

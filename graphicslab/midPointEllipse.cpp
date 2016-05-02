@@ -82,9 +82,12 @@ int main(int argc,char *argv[]){
    initgraph(&gd,&gm,NULL);
    setbkcolor(WHITE);
    setcolor(BLACK);
+   setfontcolor(BLACK);
 
    //Draw the ellipse using Trignometric algo
+   printf("\n\tEllipse using Mid Point Algo\n\tCenter: (%d, %d)\n\ta: %d\tb: %d\n", x, y, a, b);
    midPointEllipse(x,y,a,b);
+   cout<<"ellipse drawn\n";
 
    //delay so as to view the screen
    delay(5000);

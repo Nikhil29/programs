@@ -33,6 +33,7 @@ int main(int argc,char *argv[]){
    initgraph(&gd,&gm,NULL);
    setbkcolor(WHITE);
    setcolor(BLACK);
+   setfontcolor(BLACK);
 
    //get the center and radius
    int x,y,radius;
@@ -41,6 +42,7 @@ int main(int argc,char *argv[]){
    radius=atoi(argv[3]);
 
    //Draw the circle using Trignometric algo
+   printf("\n\tCircle using Trignometric Algo\n\tCenter: (%d, %d)\n\tRadius: %d", x, y, radius);
    trignometricCircle(x,y,radius);
 
    //delay so as to view the screen

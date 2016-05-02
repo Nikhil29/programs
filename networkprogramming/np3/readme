@@ -1,0 +1,2 @@
+Client sends a paragraph.
+Server replies with frequency of each word in paragraph.

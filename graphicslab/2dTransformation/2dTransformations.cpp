@@ -200,8 +200,10 @@ int main(int argc,char *argv[]){
    	initgraph(&gd,&gm,NULL);
    	setbkcolor(WHITE);
    	setcolor(BLACK);
+   	setfontcolor(BLACK);
 	
 	// translation
+	printf("\tTriangle: A(%d, %d), B(%d, %d), C(%d, %d)\n\tTranslation x:%d  y:%d", a.x, a.y, b.x, b.y, c.x, c.y, t.x, t.y);
 	plotTriangle(a,b,c);
 	aFinal=translatePoint(a,t);
 	bFinal=translatePoint(b,t);
@@ -212,6 +214,7 @@ int main(int argc,char *argv[]){
 	// rotation
 	sleep(3);
 	cleardevice();
+	printf("\n\tTriangle: A(%d, %d), B(%d, %d), C(%d, %d)\n\tRotation Angle: %f in radians", a.x, a.y, b.x, b.y, c.x, c.y, r.angle);
 	plotTriangle(a,b,c);
 	aFinal=rotatePoint(a,r);
 	bFinal=rotatePoint(b,r);
@@ -222,6 +225,7 @@ int main(int argc,char *argv[]){
 	// scaling
 	sleep(3);
 	cleardevice();
+	printf("\n\tTriangle: A(%d, %d), B(%d, %d), C(%d, %d)\n\tScale x:%d  y:%d", a.x, a.y, b.x, b.y, c.x, c.y, s.x, s.y);
 	plotTriangle(a,b,c);
 	aFinal=scalePoint(a,s);
 	bFinal=scalePoint(b,s);
@@ -232,6 +236,10 @@ int main(int argc,char *argv[]){
 	// shear
 	sleep(3);
 	cleardevice();
+	if(sh.xAbout)
+		printf("\n\tTriangle: A(%d, %d), B(%d, %d), C(%d, %d)\n\tShear about y: %d by amount: %d", a.x, a.y, b.x, b.y, c.x, c.y, sh.yAxis, sh.x);
+	else
+		printf("\n\tTriangle: A(%d, %d), B(%d, %d), C(%d, %d)\n\tShear about x: %d by amount: %d", a.x, a.y, b.x, b.y, c.x, c.y, sh.xAxis, sh.y);
 	plotTriangle(a,b,c);
 	aFinal=shearPoint(a,sh);
 	bFinal=shearPoint(b,sh);

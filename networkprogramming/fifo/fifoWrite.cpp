@@ -22,8 +22,8 @@ int main(int argc, char *argv[]){
 	}
 
 	printf("Enter the data to be sent: \n");
-	scanf("%s", buffer);
-	fprintf(myfile, "%s", buffer);
+	fgets(buffer, 100, stdin);
+	fputs(buffer, myfile);
 	printf("Data sent.\n");
 
 	fclose(myfile);

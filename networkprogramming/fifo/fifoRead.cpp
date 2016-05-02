@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 		exit(EXIT_FAILURE);
 	}
 
-	fscanf(myfile, "%s", buffer);
+	fgets(buffer, 100, myfile);
 	printf("Data received: %s\n",buffer);
 
 	fclose(myfile);

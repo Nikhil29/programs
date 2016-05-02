@@ -48,8 +48,10 @@ int main(int argc,char *argv[]){
    initgraph(&gd,&gm,NULL);
    setbkcolor(WHITE);
    setcolor(BLACK);
+   setfontcolor(BLACK);
 
    //Draw the ellipse using Trignometric algo
+   printf("\n\tEllipse using Trignometric Algo\n\tCenter: (%d, %d)\n\ta: %d\tb: %d\n", x, y, a, b);
    trignometricEllipse(x,y,a,b);
 
    //delay so as to view the screen

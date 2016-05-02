@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[]){
 	if(argc!=2){
-		printf("Enter the name of the fifo to be made\n");
+		printf("Enter the name of the fifo to be made as an argument\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -17,5 +17,7 @@ int main(int argc, char *argv[]){
 		printf("unable to make fifo\n");
 		exit(EXIT_FAILURE);
 	}
+
+	printf("Fifo %s made.\n", argv[1]);
 	return 0;
 }

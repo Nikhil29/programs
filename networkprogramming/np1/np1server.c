@@ -7,51 +7,63 @@
 #include<stdlib.h>
 int main()
 {
-	int mysockfd = socket(AF_INET, SOCK_STREAM, 0), clientfd;
 	struct sockaddr_in servaddr;
 	char output[20];
-	int n,temp,i,j;
+	int n, temp, i, j, mysockfd, clientfd;
+	struct sockaddr_in client;
+	int clilen=sizeof(client);
+
+	// create socket at server
+	mysockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if(mysockfd<0)
 	{
-		printf("socket failed\n");
+		perror("Socket failed");
 		return -1;
 	}
+
+	// create the server address
 	memset(&servaddr, 0, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(5000);
-	// inet_pton(AF_INET, "227.0.0.1", &servaddr.sin_addr);
+	// inet_pton(AF_INET, "127.0.0.1", &servaddr.sin_addr);
+	
+	// bind the server address to the socket
 	temp = bind(mysockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
 	if(temp<0)
 	{
-		printf("bind failed\n");
+		perror("Bind failed");
 		return -1;
 	}
 	else
 	{
-		printf("bind successful\n");
+		printf("Bind successful\n");
 	}
-	temp = listen(mysockfd, 1);
+
+	// listen to the requests with at max 2 requests
+	temp = listen(mysockfd, 2);
 	if(temp<0)
 	{
-		printf("listen failed\n");
+		perror("Listen failed");
 		return -1;
 	}
 	else
 	{
-		printf("listen successful\n");
+		printf("Listen successful\n");
 	}
-	struct sockaddr_in client;
-	int clilen=sizeof(client);
-	clientfd = accept(mysockfd, (struct sockaddr *)&client, &clilen);
+
+	// accept the clients request
+	clientfd = accept(mysockfd, (struct sockaddr *)&client, (unsigned int *)&clilen);
 	if(clientfd<0)
 	{
-		printf("accept failed\n");
+		perror("Accept failed");
 		return -1;
 	}
 	else
 	{
-		printf("accept successful\n");
+		printf("Accept successful\n");
 	}
+
+	// communicate with client
 	while(1)
 	{
 		if((n=read(clientfd,output,20-1))==0)
@@ -62,6 +74,6 @@ int main()
 			printf("%s\n",output);
 		}
 	}
-	printf("end\n");
+	printf("Client Disconnected\n");
 	return 0;
 }

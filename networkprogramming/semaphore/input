@@ -1,0 +1,4 @@
+Process 1 writing 1
+Process 1 writing 0
+Process 2 writing 1
+Process 2 writing 0

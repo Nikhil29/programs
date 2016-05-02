@@ -84,8 +84,10 @@ int main(int argc,char *argv[]){
     initgraph(&gd,&gm,NULL);  
     setbkcolor(WHITE);
    	setcolor(BLACK);
+   	setfontcolor(BLACK);
 
     //Draw the circle using Trignometric algo
+    printf("\n\tCircle using Mid Point Algo\n\tCenter: (%f, %f)\n\tRadius: %f\n", x, y, radius);
     midPointCircle(x,y,radius);
 
     //delay so as to view the screen
