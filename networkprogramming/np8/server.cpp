@@ -53,6 +53,7 @@ int main()
 	else{
 		printf("Listen successful\n");
 	}
+
 	while(1){
 		// accept the clients request
 		clientfd = accept(mysockfd, (struct sockaddr *)&client, (unsigned int *)&clilen);

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// this program doesnot append message length
+// this program doesnot add message length when doing padding
 
 unsigned int pFunction(unsigned int b,unsigned int c,unsigned int d, int round){
 	switch(round){
