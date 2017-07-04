@@ -1,0 +1,19 @@
+<html>
+	<body>
+		<p id="demo"></p>
+		<script>
+			var xhttp = new XMLHTTPRequest();
+			xhttp.onreadystatechange = function(){
+				if(this.readystate==4 &&this.status==200){
+					myfunction(this);
+				}
+			};
+			xhttp.open("GET", "books.xml", true);
+			xhttp.send();
+			function myfunction(xml){
+				var xmlDoc = xml.responseXML;
+				document.getElementById("demo").innerHTML = xmlDoc.getElementByTagName("title")[0].childNodes[0].nodeValue;
+			}
+		</script>
+	</body>
+</html>

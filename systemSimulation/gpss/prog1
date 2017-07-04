@@ -1,0 +1,32 @@
+Step1
+
+Initialize
+clock=0
+SE=0
+NAT=0
+Q=0
+
+Step2
+
+GENERATE IAT and Update NAT
+IF NAT < SE
+	WT = Q*IAT
+	CLOCK = NAT
+	Q = Q+1, Generate IAT and NAT
+ELSE
+	IF Q>0
+		WT <- Q * (SE-CLOCK)
+		Q <- Q-1
+		CLOCK = SE
+	ELSE
+		CLOCK = NAT
+
+	GENERATE IAT and Update NAT
+
+	IF CLOCK < Run
+		SB = CLOCK
+		IT = CLOCK-SE
+		GENERATE ST
+		SE = SB + ST
+
+Iterate through step 2 until CLOCK < RUN
